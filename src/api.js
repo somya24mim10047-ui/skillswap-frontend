@@ -36,12 +36,15 @@ export const addSkill = (token, data) =>
   });
 
 // AI MATCHES
-export const getMatches = (token) =>
-  API.get("match/", {
+export const getMatches = (token) => {
+  console.log("Sending token:", token);
+
+  return API.get("match/", {
     headers: {
       Authorization: `Token ${token}`,
     },
   });
+};
 export const updateProfile = (token, data) =>
   API.put("profile/", data, {
     headers: {

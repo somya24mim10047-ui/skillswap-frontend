@@ -8,16 +8,21 @@ function Matches() {
   const [sentRequests, setSentRequests] = useState([]);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
-    getMatches(token)
-      .then((res) => {
-        setMatches(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  console.log("Token from localStorage:", token);
+
+  getMatches(token)
+    .then((res) => {
+      console.log("Response:", res.data);
+      setMatches(res.data);
+    })
+    .catch((err) => {
+      console.log("Status:", err.response?.status);
+      console.log("Error Data:", err.response?.data);
+      console.log("Request Headers:", err.config?.headers);
+    });
+}, []);
 const handleConnect = async (username) => {
   try {
     const token = localStorage.getItem("token");
